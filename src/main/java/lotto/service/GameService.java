@@ -1,9 +1,6 @@
 package lotto.service;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
 import lotto.utils.NumberGenerator;
 import lotto.view.OutputView;
 
@@ -44,8 +41,18 @@ public class GameService {
         return new BonusNumber(inputBonusNumber);
     }
 
-    public BonusNumber getBonusNumber(int inputBonusNumber) {
-        return new BonusNumber(inputBonusNumber);
+    public GameResult getPrizeResult(Lottos purchasedLottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        GameResult gameResult = new GameResult(purchasedLottos, winningNumbers, bonusNumber);
+
+        OutputView.printStatistics(gameResult);
+
+        return gameResult;
+    }
+
+    public void getEarningRate(GameResult gameResult, int inputPrice) {
+        float earningRate = gameResult.getEarningRate(inputPrice);
+
+        OutputView.printEarningRate(earningRate);
     }
 
 }

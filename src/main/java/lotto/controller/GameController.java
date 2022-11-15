@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.BonusNumber;
+import lotto.domain.GameResult;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 import lotto.service.GameService;
@@ -21,6 +22,9 @@ public class GameController {
 
         int inputBonusNumber = InputView.getInputBonusNumber();
         BonusNumber bonusNumber = gameService.getBonusNumber(inputBonusNumber);
+
+        GameResult gameResult = gameService.getPrizeResult(purchasedLottos, winningNumbers, bonusNumber);
+        gameService.getEarningRate(gameResult, inputPrice);
     }
 
 }
