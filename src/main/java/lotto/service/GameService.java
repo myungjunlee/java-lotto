@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
 import lotto.utils.NumberGenerator;
 import lotto.view.OutputView;
 
@@ -32,6 +33,10 @@ public class GameService {
         OutputView.printPurchaseLottos(lottos);
 
         return new Lottos(lottos);
+    }
+
+    public WinningNumbers getWinningNumbers(List<Integer> inputWinningNumbers) {
+        return new WinningNumbers(inputWinningNumbers);
     }
 
 }
