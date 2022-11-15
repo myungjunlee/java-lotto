@@ -5,8 +5,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class NumberGenerator {
 
-    public static List<Integer> generateRandomNumbers(int minNumber, int maxNumber, int digit) {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(minNumber, maxNumber, digit);
+    public static List<Integer> generateRandomNumbers(int startInclusive, int endInclusive, int count) {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
 
         return numbers;
     }
