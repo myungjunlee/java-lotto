@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
@@ -37,6 +38,10 @@ public class GameService {
 
     public WinningNumbers getWinningNumbers(List<Integer> inputWinningNumbers) {
         return new WinningNumbers(inputWinningNumbers);
+    }
+
+    public BonusNumber getBonusNumber(int inputBonusNumber) {
+        return new BonusNumber(inputBonusNumber);
     }
 
 }

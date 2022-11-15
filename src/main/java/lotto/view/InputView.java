@@ -8,6 +8,7 @@ import java.util.List;
 public class InputView {
     private static final String MESSAGE_INPUT_PRICE = "구입금액을 입력해 주세요.";
     private static final String MESSAGE_INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String MESSAGE_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     public static int getInputPrice() {
         try {
@@ -24,6 +25,17 @@ public class InputView {
             System.out.println();
             System.out.println(MESSAGE_INPUT_WINNING_NUMBERS);
             return Validator.validateWinningNumbers(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static int getInputBonusNumber() {
+        try {
+            System.out.println();
+            System.out.println(MESSAGE_INPUT_BONUS_NUMBER);
+            return Validator.validateBonusNumber(Console.readLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             throw new IllegalArgumentException();

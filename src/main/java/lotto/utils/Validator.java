@@ -1,7 +1,9 @@
 package lotto.utils;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Validator {
@@ -14,7 +16,6 @@ public class Validator {
     private static final String ERROR_INPUT_PRICE_POSITIVE = "[ERROR] 구입 금액은 양수여야 합니다.";
     private static final String ERROR_INPUT_PRICE_THOUSAND = "[ERROR] 구입 금액은 1,000원 단위여야 합니다.";
     private static final String ERROR_INPUT_WINNING_NUMBER_COUNT = "[ERROR] 로또 번호는 6개의 번호를 입력해줘야 합니다.";
-    private static final String ERROR_INPUT_BONUS_NUMBER_COUNT = "[ERROR] 보너스 번호는 1개의 번호를 입력해줘야 합니다.";
     private static final String ERROR_INPUT_NUMBER_INTEGER = "[ERROR] 로또 번호는 정수여야 합니다.";
     private static final String ERROR_INPUT_NUMBER_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String ERROR_INPUT_NUMBER_DUPLICATE = "[ERROR] 로또 번호는 중복되지 않아야 합니다.";
@@ -31,9 +32,20 @@ public class Validator {
         List<String> splitNumbers = Arrays.asList(inputNumbers.split(LOTTO_NUMBER_DELIMITER));
         List<Integer> convertedNumbers = checkIntegers(splitNumbers);
         checkCounts(convertedNumbers);
-        checkRange(convertedNumbers);
+        checkDuplicate(convertedNumbers);
+
+        for (int number : convertedNumbers) {
+            checkRange(number);
+        }
 
         return convertedNumbers;
+    }
+
+    public static int validateBonusNumber(String inputNumber) {
+        int convertedNumber = checkInteger(inputNumber, ERROR_INPUT_NUMBER_INTEGER);
+        checkRange(convertedNumber);
+
+        return convertedNumber;
     }
 
     private static int checkInteger(String number, String message) {
@@ -62,19 +74,24 @@ public class Validator {
                 .collect(Collectors.toList());
     }
 
+    private static void checkDuplicate(List<Integer> numbers) {
+        Set<Integer> needToBeCheckNumbers = new HashSet<>(numbers);
+
+        if(needToBeCheckNumbers.size() != LOTTO_COUNT) {
+            throw new IllegalArgumentException(ERROR_INPUT_NUMBER_DUPLICATE);
+        }
+    }
+
     private static void checkCounts(List<Integer> numbers) {
         if (numbers.size() != LOTTO_COUNT) {
             throw new IllegalArgumentException(ERROR_INPUT_WINNING_NUMBER_COUNT);
         }
     }
 
-    private static void checkRange(List<Integer> numbers) {
-        for (int number : numbers) {
-            if ((number < MINIMUM_NUMBER) || (number > MAXIMUM_NUMBER)) {
-                throw new IllegalArgumentException(ERROR_INPUT_NUMBER_RANGE);
-            }
+    private static void checkRange(int number) {
+        if ((number < MINIMUM_NUMBER) || (number > MAXIMUM_NUMBER)) {
+            throw new IllegalArgumentException(ERROR_INPUT_NUMBER_RANGE);
         }
     }
-
 
 }
