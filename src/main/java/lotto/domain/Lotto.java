@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -12,6 +13,7 @@ public class Lotto {
 
     @Override
     public String toString() {
+        Collections.sort(numbers);
         List<String> lottoNumbers = new ArrayList<>();
 
         for (Integer number : numbers) {
