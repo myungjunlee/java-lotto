@@ -44,4 +44,8 @@ public class GameService {
         return new BonusNumber(inputBonusNumber);
     }
 
+    public BonusNumber getBonusNumber(int inputBonusNumber) {
+        return new BonusNumber(inputBonusNumber);
+    }
+
 }
