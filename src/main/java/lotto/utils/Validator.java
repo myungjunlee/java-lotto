@@ -23,7 +23,7 @@ public class Validator {
     }
 
     private static void checkPositive(int number) {
-        if (number > 0) {
+        if (number <= 0) {
             throw new IllegalArgumentException(ERROR_INPUT_PRICE_POSITIVE);
         }
     }
