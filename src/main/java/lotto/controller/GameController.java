@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lottos;
 import lotto.service.GameService;
 import lotto.view.InputView;
 
@@ -9,6 +10,7 @@ public class GameController {
 
         int inputPrice = InputView.getInputPrice();
         int purchasedCounts = gameService.getPurchaseCounts(inputPrice);
+        Lottos purchasedLottos = gameService.issueLottos(purchasedCounts);
     }
 
 }
